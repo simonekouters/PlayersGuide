@@ -5,9 +5,10 @@ public class Watchtower {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("x value: ");
-        int x = Integer.valueOf(scanner.nextLine());
+        int x = Integer.parseInt(scanner.nextLine());
+		
         System.out.print("y value: ");
-        int y = Integer.valueOf(scanner.nextLine());
+        int y = Integer.parseInt(scanner.nextLine());
 
         if (x == 0 && y == 0) {
             System.out.println("The enemy is here!");
