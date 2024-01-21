@@ -2,16 +2,17 @@ import java.util.Scanner;
 
 public class TheDominionOfKings {
     public static void main(String[] args) {
+		
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("How many estates? ");
-        int estates = Integer.valueOf(scanner.nextLine());
+        int estates = Integer.parseInt(scanner.nextLine());
 		
         System.out.print("How many duchies? ");
-        int duchies = Integer.valueOf(scanner.nextLine());
+        int duchies = Integer.parseInt(scanner.nextLine());
 		
         System.out.print("How many provinces? ");
-        int provinces = Integer.valueOf(scanner.nextLine());
+        int provinces = Integer.parseInt(scanner.nextLine());
         
         int sum = estates + 3 * duchies + 6 * provinces;
 
