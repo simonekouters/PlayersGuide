@@ -8,7 +8,7 @@ public class TheFourSistersAndTheDuckbear {
 
         System.out.println("How many chocolate eggs were gathered today?");
 
-        int eggs = Integer.valueOf(scanner.nextLine());
+        int eggs = Integer.parseInt(scanner.nextLine());
         int eggsForEachSister = eggs / 4;
         int eggsForDuckbear = eggs % 4;
 		
