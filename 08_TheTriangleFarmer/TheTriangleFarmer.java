@@ -6,10 +6,10 @@ public class TheTriangleFarmer {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("What is the triangle's base size? ");
-        double base = Double.valueOf(scanner.nextLine());
+        double base = Double.parseDouble(scanner.nextLine());
 
         System.out.print("What is the triangle's height? ");
-        double height = Double.valueOf(scanner.nextLine());
+        double height = Double.parseDouble(scanner.nextLine());
 		
 		double area = base * height;
 
