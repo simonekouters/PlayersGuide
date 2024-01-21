@@ -8,9 +8,10 @@ public class TheDefenseOfConsolas {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Target Row? ");
-        int row = Integer.valueOf(scanner.nextLine());
+        int row = Integer.parseInt(scanner.nextLine());
+		
         System.out.print("Target Column? ");
-        int column = Integer.valueOf(scanner.nextLine());
+        int column = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Deploy to: ");
         System.out.println(ANSI_RED + "(" + row + ", " + (column - 1) + ")");
