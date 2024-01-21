@@ -7,8 +7,9 @@ public class BuyingInventory {
         System.out.println("MENU:");
         System.out.println("1.Rope\n" + "2.Torches\n" + "3.Climbing Equipment\n" +
                 "4.Clean Water\n" + "5.Machete\n" + "6.Canoe\n" + "7.Food Supplies\n");
+				
         System.out.print("What number do you want to see the price of? ");
-        int item = Integer.valueOf(scanner.nextLine());
+        int item = Integer.parseInt(scanner.nextLine());
 
         int price = switch (item) {
             case 1 -> 10;
