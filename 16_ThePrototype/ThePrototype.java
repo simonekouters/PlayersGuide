@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class ThePrototype {
     public static void main(String[] args) {
+		
         Scanner scanner = new Scanner(System.in);
 
         int number = askForNumberInRange("User 1, enter a number between 0 and 100: ", 0, 100);
@@ -12,7 +13,7 @@ public class ThePrototype {
 
         while (true) {
             System.out.print("What is your next guess? ");
-            int guess = Integer.valueOf(scanner.nextLine());
+            int guess = Integer.parseInt(scanner.nextLine());
             if (guess == number) {
                 break;
             } else if (guess < number) {
@@ -28,7 +29,7 @@ public class ThePrototype {
 		int number;
 		do {
 			System.out.print(text);
-            number = Integer.valueOf(scanner.nextLine());
+            number = Integer.parseInt(scanner.nextLine());
         } while (number < min || number > max);
         return number;
     }
