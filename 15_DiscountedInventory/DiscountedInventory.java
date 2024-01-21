@@ -7,8 +7,9 @@ public class DiscountedInventory {
         System.out.println("MENU:");
         System.out.println("1.Rope\n" + "2.Torches\n" + "3.Climbing Equipment\n" +
                 "4.Clean Water\n" + "5.Machete\n" + "6.Canoe\n" + "7.Food Supplies\n");
-        System.out.print("What number do you want to see the price of? ");
-        int item = Integer.valueOf(scanner.nextLine());
+        
+		System.out.print("What number do you want to see the price of? ");
+        int item = Integer.parseInt(scanner.nextLine());
 
         int price = switch (item) {
             case 1 -> 10;
@@ -22,6 +23,7 @@ public class DiscountedInventory {
 
         System.out.print("What's your name? ");
         String name = scanner.nextLine();
+		
         if (name.toLowerCase().equals("simone")) {
             System.out.println("The item costs " + 0.5 * price + " gold.");
         } else {
