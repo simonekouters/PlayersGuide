@@ -10,8 +10,8 @@ public class TheTriangleFarmer {
 
         System.out.print("What is the triangle's height? ");
         double height = Double.parseDouble(scanner.nextLine());
-		
-		double area = base * height;
+        
+        double area = base * height;
 
         System.out.println("The area of the triangle is " + area);
     }
