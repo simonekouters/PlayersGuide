@@ -26,11 +26,12 @@ public class ThePrototype {
     }
 	public static int askForNumberInRange(String text, int min, int max) {
         Scanner scanner = new Scanner(System.in);
-		int number;
-		do {
-			System.out.print(text);
+        int number;
+        
+        do {
+            System.out.print(text);
             number = Integer.parseInt(scanner.nextLine());
-        } while (number < min || number > max);
+            } while (number < min || number > max);
         return number;
     }
 }
