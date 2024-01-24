@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class TheFourSistersAndTheDuckbear {
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -11,8 +10,8 @@ public class TheFourSistersAndTheDuckbear {
         int eggs = Integer.parseInt(scanner.nextLine());
         int eggsForEachSister = eggs / 4;
         int eggsForDuckbear = eggs % 4;
-		
-		System.out.println();
+        
+        System.out.println();
         System.out.println("Eggs for each sister: " + eggsForEachSister);
         System.out.println("Eggs for the duckbear: " + eggsForDuckbear);
 
