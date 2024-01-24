@@ -11,8 +11,8 @@ public class InventoryItem {
     public double getWeight() {
         return this.weight;
     }
-	
-	
+    
+    
     public double getVolume() {
         return this.volume;
     }

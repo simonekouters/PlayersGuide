@@ -6,22 +6,22 @@ public class UserInterface {
     public UserInterface() {
         this.robot = new Robot();
     }
-	
-	
+    
+    
     public void start() {
         RobotCommand command1 = askCommand();
         RobotCommand command2 = askCommand();
         RobotCommand command3 = askCommand();
-		
+        
         robot.setCommands(command1, command2, command3);
-		
+        
         robot.run(robot);
     }
 
 
     public RobotCommand askCommand() {
         Scanner scanner = new Scanner(System.in);
-		
+        
         System.out.print("Enter a command: ");
         String command = scanner.nextLine().toLowerCase().trim();
 

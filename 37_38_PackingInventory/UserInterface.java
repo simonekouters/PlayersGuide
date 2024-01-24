@@ -6,15 +6,15 @@ public class UserInterface {
     public void start() {
         System.out.print("Enter the maximum amount of items of your pack: ");
         int maxItems = Integer.parseInt(scanner.nextLine());
-		
+        
         System.out.print("Enter the maximum weight of your pack: ");
         double maxWeight = Double.parseDouble(scanner.nextLine());
-		
+        
         System.out.print("Enter the maximum volume of your pack: ");
         double maxVolume = Double.parseDouble(scanner.nextLine());
-		
+        
         Pack pack = new Pack(maxItems, maxWeight, maxVolume);
-		
+        
         System.out.println("""
                 \nAvailable Items:
                 1. Arrow
@@ -27,16 +27,16 @@ public class UserInterface {
 
         while (true) {
             System.out.println("\n" + pack);
-			
+            
             System.out.print("Choose an item to add to your pack (enter the number of item): ");
             int item = Integer.parseInt(scanner.nextLine());
-			
+            
             if (item < 1 || item > 6) {
                 System.out.println("Please enter a valid number");
                 continue;
             }
             addItems(pack, item);
-			
+            
             if(pack.full()) {
                 System.out.println("\nThe pack is full");
                 System.out.println(pack.getStats());
@@ -48,7 +48,7 @@ public class UserInterface {
 
     public void addItems(Pack pack, int item) {
         InventoryItem itemToAdd = null;
-		
+        
         if (item == 1) {
             Arrow arrow = new Arrow();
             itemToAdd = arrow;
@@ -68,7 +68,7 @@ public class UserInterface {
             Sword sword = new Sword();
             itemToAdd = sword;
         }
-		
+        
         pack.add(itemToAdd);
     }
 }

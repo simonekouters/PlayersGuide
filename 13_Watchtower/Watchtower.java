@@ -6,7 +6,7 @@ public class Watchtower {
 
         System.out.print("x value: ");
         int x = Integer.parseInt(scanner.nextLine());
-		
+        
         System.out.print("y value: ");
         int y = Integer.parseInt(scanner.nextLine());
 

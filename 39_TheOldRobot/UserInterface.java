@@ -10,9 +10,9 @@ public class UserInterface {
         RobotCommand command1 = askCommand();
         RobotCommand command2 = askCommand();
         RobotCommand command3 = askCommand();
-		
+        
         robot.setCommands(command1, command2, command3);
-		
+        
         robot.run();
     }
 

@@ -6,7 +6,6 @@ public class TheMagicCannon {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) {
-
         for (int i = 1; i <= 100; i++) {
             String blast = "";
             if (i % 5 == 0 && i % 3 == 0) {

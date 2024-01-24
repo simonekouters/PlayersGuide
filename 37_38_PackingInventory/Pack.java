@@ -3,14 +3,14 @@ import java.util.List;
 
 public class Pack {
     private List<InventoryItem> items;
-	
+    
     private int maxItems;
     private double maxWeight;
     private double maxVolume;
 
     public Pack(int maxItems, double maxWeight, double maxVolume) {
         this.items = new ArrayList<>();
-		
+        
         this.maxItems = maxItems;
         this.maxWeight = maxWeight;
         this.maxVolume = maxVolume;
@@ -26,14 +26,14 @@ public class Pack {
         this.items.add(item);
         return true;
     }
-	
-	
+    
+    
     public boolean full() {
         if (getItemCount() == this.maxItems || getTotalWeight() == this.maxWeight || getTotalVolume() == this.maxVolume) {
             return true;
         }
         getStats();
-		
+        
         return false;
     }
 
@@ -59,8 +59,8 @@ public class Pack {
         }
         return sum;
     }
-	
-	
+    
+    
     public String getStats() {
         return "Item count: " + getItemCount() + "/" + this.maxItems +
                 "\nWeight: " + getTotalWeight() + "/" + this.maxWeight +

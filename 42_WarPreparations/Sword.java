@@ -1,15 +1,13 @@
 public record Sword(Material material, Gemstone gemstone, int length, int crossguardWidth) {
-
     public static Sword withMaterial(Material material) {
-		
         Gemstone BASIC_GEMSTONE = Gemstone.NONE;
         int BASIC_LENGTH = 75;
         int BASIC_CROSSGUARDWITH = 15;
-		
+        
         return new Sword(material, BASIC_GEMSTONE, BASIC_LENGTH, BASIC_CROSSGUARDWITH);
     }
-	
-	
+    
+    
     @Override
     public String toString() {
         if (this.gemstone.equals(Gemstone.NONE)) {

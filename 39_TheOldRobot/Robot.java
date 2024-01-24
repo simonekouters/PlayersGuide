@@ -11,36 +11,36 @@ public class Robot {
         this.isPowered = false;
         this.commands = new RobotCommand[3];
     }
-	
-	
-	public void setCommands(RobotCommand command1, RobotCommand command2, RobotCommand command3) {
+    
+    
+    public void setCommands(RobotCommand command1, RobotCommand command2, RobotCommand command3) {
         commands[0] = command1;
         commands[1] = command2;
         commands[2] = command3;
     }
-	
-	
+    
+    
     public void setX(int x) {
         if (!isPowered) {
             return;
         }
         this.x += x;
     }
-	
-	
+    
+    
     public void setY(int y) {
         if (!isPowered) {
             return;
         }
         this.y += y;
     }
-	
-	
+    
+    
     public void setPowered(boolean isPowered) {
         this.isPowered = isPowered;
     }
     
-	
+    
     public void run() {
         for (RobotCommand command : commands) {
             command.run(this);

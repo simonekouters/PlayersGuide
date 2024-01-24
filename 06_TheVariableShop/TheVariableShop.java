@@ -1,8 +1,5 @@
-
 public class TheVariableShop {
-
     public static void main(String[] args) {
-
         byte myByteNumber = 127;
         System.out.println(myByteNumber);
 
@@ -29,7 +26,5 @@ public class TheVariableShop {
 
         String myText = "Simone";
         System.out.println(myText);
-
     }
-
 }

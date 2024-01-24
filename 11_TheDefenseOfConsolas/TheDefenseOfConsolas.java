@@ -3,13 +3,13 @@ import java.awt.Toolkit;
 
 public class TheDefenseOfConsolas {
     public static final String ANSI_RED = "\u001B[31m";
-
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Target Row? ");
         int row = Integer.parseInt(scanner.nextLine());
-		
+        
         System.out.print("Target Column? ");
         int column = Integer.parseInt(scanner.nextLine());
 

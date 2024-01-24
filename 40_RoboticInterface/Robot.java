@@ -13,24 +13,24 @@ public class Robot implements RobotCommand {
         this.isPowered = false;
         this.commands = new RobotCommand[3];
     }
-	
-	
+    
+    
     public void setX(int x) {
         if (!isPowered) {
             return;
         }
         this.x += x;
     }
-	
-	
+    
+    
     public void setY(int y) {
         if (!isPowered) {
             return;
         }
         this.y += y;
     }
-	
-	
+    
+    
     public void setPowered(boolean isPowered) {
         this.isPowered = isPowered;
     }

@@ -1,12 +1,11 @@
 public class PasswordValidator {
-	
     private String password;
 
     public PasswordValidator(String password) {
         this.password = password;
     }
-	
-	
+    
+    
     public String validate() {
         boolean length = false;
         boolean uppercase = false;
@@ -18,7 +17,7 @@ public class PasswordValidator {
         if (this.password.length() >= 6 && this.password.length() <= 13) {
             length = true;
         }
-		
+        
         for (char ch: this.password.toCharArray()) {
             if (Character.isUpperCase(ch)) {
                 uppercase = true;
@@ -36,7 +35,7 @@ public class PasswordValidator {
                 containsAmpersand = true;
             }
         }
-		
+        
         if (length && uppercase && lowercase && digit && !containsT && !containsAmpersand) {
             return "Password validated";
         }
