@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 public class TheThingNamer3000 {
-
     public static void main(String[] args) {
-
         System.out.println("What kind of thing are we talking about?");
 
         Scanner input = new Scanner (System.in);
