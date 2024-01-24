@@ -1,5 +1,4 @@
 public class Card {
-
     enum Color {
         RED("Red"), GREEN("Green"), BLUE("Blue"), YELLOW("Yellow");
 
@@ -8,8 +7,8 @@ public class Card {
             this.name = name;
         }
     }
-	
-	
+    
+    
     enum Rank {
         ONE("One"), TWO("Two"), THREE("Three"), FOUR("Four"), FIVE("Five"),
         SIX("Six"), SEVEN("Seven"), EIGHT("Eight"), NINE("Nine"), TEN("Ten"),
