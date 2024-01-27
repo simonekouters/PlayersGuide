@@ -1,33 +1,48 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class DiscountedInventory {
+    private static final List<Item> items = new ArrayList<>(List.of(new Item("Rope", 10), 
+    new Item("Torches", 15), new Item("Climbing Equipment", 25), new Item("Clean Water", 1), 
+    new Item("Machete", 20), new Item("Canoe", 200), new Item("Food Supplies", 1)));
+    
+    private static final Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("MENU:");
-        System.out.println("1.Rope\n" + "2.Torches\n" + "3.Climbing Equipment\n" +
-                "4.Clean Water\n" + "5.Machete\n" + "6.Canoe\n" + "7.Food Supplies\n");
-
-        System.out.print("What number do you want to see the price of? ");
-        int item = Integer.parseInt(scanner.nextLine());
-
-        int price = switch (item) {
-            case 1 -> 10;
-            case 2 -> 15;
-            case 3 -> 25;
-            case 4, 7 -> 1;
-            case 5 -> 20;
-            case 6 -> 200;
-            default -> throw new IllegalArgumentException("Invalid item number");
-        };
-
-        System.out.print("What's your name? ");
-        String name = scanner.nextLine();
-		
-        if (name.toLowerCase().equals("simone")) {
-            System.out.println("The item costs " + 0.5 * price + " gold.");
+        displayMenu();
+        
+        int itemNumber = askNumber();
+        Item chosenItem = items.get(itemNumber - 1);
+        
+        if (nameIsMyName()) {
+            System.out.println("The item costs " + 0.5 * chosenItem.price() + " gold.");
         } else {
-            System.out.println("The item costs " + price + " gold.");
+            System.out.println("The item costs " + chosenItem.price() + " gold.");
         }
     }
+    
+    
+    private static void displayMenu() {
+        System.out.println("MENU:");
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println((i + 1) + "." + items.get(i).name());
+        }
+    }
+    
+    
+    private static int askNumber() {
+        System.out.print("\nWhat number do you want to see the price of? ");
+        int number = Integer.parseInt(scanner.nextLine());
+        return number;
+    }
+    
+    
+    private static boolean nameIsMyName() {
+        System.out.print("What's your name? ");
+        String name = scanner.nextLine();
+        return name.toLowerCase().equals("simone");
+    }
 }
+
+record Item (String name, int price) {}

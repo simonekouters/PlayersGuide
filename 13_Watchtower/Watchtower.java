@@ -9,25 +9,25 @@ public class Watchtower {
         
         System.out.print("y value: ");
         int y = Integer.parseInt(scanner.nextLine());
-
+        
+        String result = "The enemy is to the ";
+        
         if (x == 0 && y == 0) {
-            System.out.println("The enemy is here!");
-        } else if (x == 0 && y > 0) {
-            System.out.println("The enemy is to the north!");
-        } else if (x > 0 && y == 0) {
-            System.out.println("The enemy is to the east!");
-        } else if (x == 0 && y < 0) {
-            System.out.println("The enemy is to the south!");
-        } else if (x < 0 && y == 0) {
-            System.out.println("The enemy is to the west!");
-        } else if (x > 0 && y > 0) {
-            System.out.println("The enemy is to the northeast!");
-        } else if (x > 0 && y < 0) {
-            System.out.println("The enemy is to the southeast!");
-        } else if (x < 0 && y < 0) {
-            System.out.println("The enemy is to the southwest!");
-        } else {
-            System.out.println("The enemy is to the northwest!");
+            result = "The enemy is here";
         }
+        if (y > 0) {
+            result += "north";
+        }
+        if (y < 0) {
+            result += "south";
+        }
+        if (x > 0) {
+            result += "east";
+        }
+        if (x < 0) {
+            result += "west";
+        }
+        
+        System.out.println(result + "!");  
     }
 }

@@ -58,24 +58,18 @@ public class Game {
     
     
     public boolean hasWon() {
-        if ((board.getSymbol(7) != null) && (board.getSymbol(7) == board.getSymbol(8)) && (board.getSymbol(8) == board.getSymbol(9))) {
-            return true;
-        } else if ((board.getSymbol(4) != null) && (board.getSymbol(4) == board.getSymbol(5)) && (board.getSymbol(5) == board.getSymbol(6))) {
-            return true;
-        } else if ((board.getSymbol(1) != null) && (board.getSymbol(1) == board.getSymbol(2)) && (board.getSymbol(2) == board.getSymbol(3))) {
-            return true;
-        } else if ((board.getSymbol(7) != null) && (board.getSymbol(7) == board.getSymbol(4)) && (board.getSymbol(4) == board.getSymbol(1))) {
-            return true;
-        } else if ((board.getSymbol(8) != null) && (board.getSymbol(8) == board.getSymbol(5)) && (board.getSymbol(5) == board.getSymbol(2))) {
-            return true;
-        } else if ((board.getSymbol(9) != null) && (board.getSymbol(9) == board.getSymbol(6)) && (board.getSymbol(6) == board.getSymbol(3))) {
-            return true;
-        } else if ((board.getSymbol(7) != null) && (board.getSymbol(7) == board.getSymbol(5)) && (board.getSymbol(5) == board.getSymbol(3))) {
-            return true;
-        } else if ((board.getSymbol(1) != null) && (board.getSymbol(1) == board.getSymbol(5)) && (board.getSymbol(5) == board.getSymbol(9))) {
-            return true;
-        } else {
-            return false;
+        for (int i = 1; i <= 9; i++) {
+            if ((board.getSymbol(i) == null) && (board.getSymbol(i) == board.getSymbol(i + 1)) && (board.getSymbol(i) == board.getSymbol(i + 2))) {
+               return true;
+            } else if ((board.getSymbol(i) == null) && (board.getSymbol(i) == board.getSymbol(i + 2)) && (board.getSymbol(i) == board.getSymbol(i + 4))) {
+                return true;
+            } else if ((board.getSymbol(i) == null) && (board.getSymbol(i) == board.getSymbol(i + 3)) && (board.getSymbol(i) == board.getSymbol(i + 6))) {
+                return true;
+            } else if ((board.getSymbol(i) == null) && (board.getSymbol(i) == board.getSymbol(i + 4)) && (board.getSymbol(i) == board.getSymbol(i + 8))) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

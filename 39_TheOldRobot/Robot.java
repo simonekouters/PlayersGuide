@@ -20,7 +20,7 @@ public class Robot {
     }
     
     
-    public void setX(int x) {
+    public void moveX(int x) {
         if (!isPowered) {
             return;
         }
@@ -28,7 +28,7 @@ public class Robot {
     }
     
     
-    public void setY(int y) {
+    public void moveY(int y) {
         if (!isPowered) {
             return;
         }
