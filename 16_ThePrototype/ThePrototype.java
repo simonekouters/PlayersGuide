@@ -1,14 +1,17 @@
 import java.util.Scanner;
 
 public class ThePrototype {
+    private static final int MAX_SCREEN_HEIGHT = 300;
+    
     public static void main(String[] args) {
-		
-        Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
         int number = askForNumberInRange("User 1, enter a number between 0 and 100: ", 0, 100);
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        for (int i = 0; i < MAX_SCREEN_HEIGHT; i++) {
+            System.out.println();
+        }
+        
         System.out.println("User 2, guess the number.");
 
         while (true) {

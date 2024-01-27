@@ -34,13 +34,13 @@ public class Arrow {
     
     
     public static Arrow createBeginnerArrow() {
-        Arrow beginnerArrow = new Arrow(Arrowhead.WOOD, Fletching.GOOSEFEATHERS, 75);
+        Arrow beginnerArrow = new Arrow(Arrowhead.WOOD, Fletching.GOOSE_FEATHERS, 75);
         return beginnerArrow;
     }
     
     
     public static Arrow createMarksmanArrow() {
-        Arrow marksmanArrow = new Arrow(Arrowhead.WOOD, Fletching.GOOSEFEATHERS, 65);
+        Arrow marksmanArrow = new Arrow(Arrowhead.WOOD, Fletching.GOOSE_FEATHERS, 65);
         return marksmanArrow;
     }
     

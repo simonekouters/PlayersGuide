@@ -18,11 +18,11 @@ public class Shop {
         
         String menuChoice = askMenuChoice();
         
-        //If user chooses standard arrow, they are only able to see the standard options and create a standard arrow
+        // If user chooses standard arrow, they are only able to see the standard options and create a standard arrow
         if (menuChoice.equals("standard")) { 
             displayStandardMenu();
             createStandardArrow();
-            //If user chooses standard arrow, they are only able to see the custom options and create a custom arrow
+        // If user chooses standard arrow, they are only able to see the custom options and create a custom arrow
         } else { 
             displayCustomMenu();
             createCustomArrow();
@@ -42,7 +42,7 @@ public class Shop {
         String input = "";
         boolean valid = false;
         
-        //Ask user for input until they choose one of the two options
+        // Ask user for input until they choose one of the two options
         while (!valid) {
             input = scanner.nextLine();
             
@@ -66,7 +66,7 @@ public class Shop {
     
     
     public void createStandardArrow() {
-        //Make sure the user input is valid before creating an arrow
+        // Make sure the user input is valid before creating an arrow
         String standardArrowChoice = chooseStandardArrow();
         
         if (standardArrowChoice.equals("elite")) {
@@ -85,7 +85,7 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "Do you want an 'elite', 'beginner' or 'marksman' arrow?" + ANSI.RESET);
         
-        //Ask user for input until they choose one of the three options
+        // Ask user for input until they choose one of the three options
         while (!valid) {
             input = scanner.nextLine();
             
@@ -128,7 +128,7 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "Which type of Arrowhead do you want?" + ANSI.RESET);
         
-        //Ask user for input until they choose one of the three options 
+        // Ask user for input until they choose one of the three options 
         while (!valid) {
             arrowheadChoice = scanner.nextLine();
             
@@ -150,19 +150,19 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "\nWhich type of fletching do you want?" + ANSI.RESET);
         
-        //Ask user for input until they choose one of the three options 
+        // Ask user for input until they choose one of the three options 
         while (!valid) {
             fletchingChoice = scanner.nextLine();
             
             try {
-            Fletching chosenFletching = Fletching.valueOf(fletchingChoice.toUpperCase().replaceAll(" ", ""));
+            Fletching chosenFletching = Fletching.valueOf(fletchingChoice.toUpperCase().trim().replaceAll(" ", "_"));
             valid = true;
             
             } catch(IllegalArgumentException e) {
                 System.out.println(ANSI.RED + "Please choose one of the available options." + ANSI.RESET);
             }
         }
-        return Fletching.valueOf(fletchingChoice.toUpperCase().replaceAll(" ", ""));    
+        return Fletching.valueOf(fletchingChoice.toUpperCase().trim().replaceAll(" ", "_"));    
     }
     
     
@@ -172,7 +172,7 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
         
-        //Validate that the user input is a number and is between 60 and 100 before returning the length
+        // Validate that the user input is a number and is between 60 and 100 before returning the length
         while (!valid) {
             lengthChoice = scanner.nextLine(); 
             if(isANumber(lengthChoice) && lengthIsValid(lengthChoice)) {

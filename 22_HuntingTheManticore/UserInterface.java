@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class UserInterface {
-    
+    private static final int MAX_SCREEN_HEIGHT = 300;
     private ManticoreHunting hunting;
     private Scanner scanner;
     
@@ -14,8 +14,10 @@ public class UserInterface {
     public void start() {
         placeManticore();
         
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        for (int i = 0; i < MAX_SCREEN_HEIGHT; i++) {
+            System.out.println();
+        }
+        
         System.out.println("Player 2, it is your turn.");
         System.out.println("-----------------------------------------------------------");
         
@@ -25,6 +27,7 @@ public class UserInterface {
             if (hunting.isDestroyed()) {
                 break;
             }
+            hunting.updateCityHealth();
             hunting.nextRound();
             System.out.println("-----------------------------------------------------------");
         }
@@ -57,6 +60,5 @@ public class UserInterface {
         } else {
             System.out.println(ANSI.CYAN + "That round OVERSHOT the target." + ANSI.RESET);
         }
-        hunting.updateCityHealth();
     }
 }

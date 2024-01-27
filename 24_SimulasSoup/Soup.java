@@ -9,7 +9,7 @@ public class Soup {
         this.seasoning = seasoning;
     }
     
-    
+    @Override
     public String toString() {
         return seasoning.getName() + " " + ingredient.getName() + " " + type.getName();
     }

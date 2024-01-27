@@ -1,7 +1,7 @@
 public enum Fletching {
     PLASTIC("Plastic", 10), 
-    TURKEYFEATHERS("Turkey feathers", 5), 
-    GOOSEFEATHERS("Goose feathers", 3);
+    TURKEY_FEATHERS("Turkey feathers", 5), 
+    GOOSE_FEATHERS("Goose feathers", 3);
 
     private final String name;
     private final int cost;
@@ -22,6 +22,7 @@ public enum Fletching {
     }
     
     
+    @Override
     public String toString() {
         return "- " + this.name;
     }

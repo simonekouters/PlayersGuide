@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class ManticoreHunting {
-
     private int distance;
     private int damage;
     
@@ -54,7 +53,7 @@ public class ManticoreHunting {
     public boolean isDestroyed() {
         while (true) {
             if (manticoreHealth <= 0) {
-                System.out.println(ANSI.GREEN + "The Manticore has been destroyed! The city of Consolas has been saved!");
+                System.out.println(ANSI.GREEN + "The Manticore has been destroyed! The city of Consolas has been saved!" + ANSI.RESET);
                 return true;
             } else if (cityHealth <= 0) {
                 System.out.println(ANSI.RED + "The city of Consolas has been destroyed. You failed to save the city.");

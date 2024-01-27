@@ -39,7 +39,8 @@ public class Card {
         }
     }
 
-
+    
+    @Override
     public String toString() {
         return "The " + this.color.name + " " + this.rank.name;
     }

@@ -55,7 +55,7 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "Which type of Arrowhead do you want?" + ANSI.RESET);
         
-        //Ask user for input until they choose one of the three options 
+        // Ask user for input until they choose one of the three options 
         while (!valid) {
             arrowheadChoice = scanner.nextLine();
             
@@ -77,19 +77,19 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "\nWhich type of fletching do you want?" + ANSI.RESET);
         
-        //Ask user for input until they choose one of the three options 
+        // Ask user for input until they choose one of the three options 
         while (!valid) {
             fletchingChoice = scanner.nextLine();
             
             try {
-            Fletching chosenFletching = Fletching.valueOf(fletchingChoice.toUpperCase().replaceAll(" ", ""));
+            Fletching chosenFletching = Fletching.valueOf(fletchingChoice.toUpperCase().trim().replaceAll(" ", "_"));
             valid = true;
             
             } catch(IllegalArgumentException e) {
                 System.out.println(ANSI.RED + "Please choose one of the available options." + ANSI.RESET);
             }
         }
-        return Fletching.valueOf(fletchingChoice.toUpperCase().replaceAll(" ", ""));    
+        return Fletching.valueOf(fletchingChoice.toUpperCase().trim().replaceAll(" ", "_"));    
     }
     
     
@@ -99,7 +99,7 @@ public class Shop {
         
         System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
         
-        //Validate that the user input is a number and is between 60 and 100 before returning the length
+        // Validate that the user input is a number and is between 60 and 100 before returning the length
         while (!valid) {
             lengthChoice = scanner.nextLine(); 
             if(isANumber(lengthChoice) && lengthIsValid(lengthChoice)) {
@@ -131,7 +131,7 @@ public class Shop {
             return true;
         }
         
-        System.out.println(ANSI.RED + "Please choose a valid length."" + ANSI.RESET);
+        System.out.println(ANSI.RED + "Please choose a valid length." + ANSI.RESET);
         return false;
     }
         
