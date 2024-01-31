@@ -21,7 +21,7 @@ public class UserInterface {
         System.out.println("Player 2, it is your turn.");
         System.out.println("-----------------------------------------------------------");
         
-        while (true) {
+        do {
             hunting.displayStatus();
             guess();
             if (hunting.isDestroyed()) {
@@ -30,7 +30,7 @@ public class UserInterface {
             hunting.updateCityHealth();
             hunting.nextRound();
             System.out.println("-----------------------------------------------------------");
-        }
+        } while (true);
     }
     
     

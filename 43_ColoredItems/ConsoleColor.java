@@ -9,14 +9,14 @@ public enum ConsoleColor {
     WHITE("\033[0;37m"),
     RESET("\033[0m");
 
-    private final String ANSI_Console_Color_CODE;
+    private final String ANSI_CODE;
 
     public String getANSI() {
-        return ANSI_Console_Color_CODE;
+        return ANSI_CODE;
     }
+    
 
-
-    ConsoleColors(String color) {
-        this.ANSI_Console_Color_CODE = color;
+    ConsoleColor(String color) {
+        this.ANSI_CODE = color;
     }
 }

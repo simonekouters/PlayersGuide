@@ -54,7 +54,6 @@ public class Shop {
         String arrowheadChoice = "";
         boolean valid = false;
         
-        // Ask user for input until they choose one of the three options 
         do {
             try{
                 arrowheadChoice = scanner.nextLine();
@@ -73,8 +72,7 @@ public class Shop {
         System.out.println(ANSI.CYAN + "\nWhich type of fletching do you want?" + ANSI.RESET);
         String fletchingChoice = "";
         boolean valid = false;
-        
-        // Ask user for input until they choose one of the three options 
+         
         do {
             try {
                 fletchingChoice = scanner.nextLine();
@@ -90,24 +88,20 @@ public class Shop {
     
     
     public int chooseLength() {
-        System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
-         
-        int number;
-         
         do {
-            try {
-                number = Integer.parseInt(scanner.nextLine());
+            System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
+            if (scanner.hasNextInt()) {
+                int number = Integer.parseInt(scanner.nextLine());
                 if (number >= 60 && number <= 100) {
-                    break;
+                    return number;
                 } else {
                     System.out.println(ANSI.RED + "Please choose a valid length." + ANSI.RESET);
                 }
-            } catch (NumberFormatException e) {
+            } else {
+                scanner.nextLine();
                 System.out.println(ANSI.RED + "That is not a number." + ANSI.RESET);
-            }
+            }   
         } while (true);
-        
-        return number;
     }
     
     

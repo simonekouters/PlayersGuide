@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class DiscountedInventory {
-    private static final List<Item> items = new ArrayList<>(List.of(new Item("Rope", 10), 
+    private static final List<Item> ITEMS = List.of(new Item("Rope", 10), 
     new Item("Torches", 15), new Item("Climbing Equipment", 25), new Item("Clean Water", 1), 
-    new Item("Machete", 20), new Item("Canoe", 200), new Item("Food Supplies", 1)));
+    new Item("Machete", 20), new Item("Canoe", 200), new Item("Food Supplies", 1));
     
     private static final Scanner scanner = new Scanner(System.in);
     
@@ -13,7 +13,7 @@ public class DiscountedInventory {
         displayMenu();
         
         int itemNumber = askNumber();
-        Item chosenItem = items.get(itemNumber - 1);
+        Item chosenItem = ITEMS.get(itemNumber - 1);
         
         if (nameIsMyName()) {
             System.out.println("The item costs " + 0.5 * chosenItem.price() + " gold.");
@@ -25,8 +25,8 @@ public class DiscountedInventory {
     
     private static void displayMenu() {
         System.out.println("MENU:");
-        for (int i = 0; i < items.size(); i++) {
-            System.out.println((i + 1) + "." + items.get(i).name());
+        for (int i = 0; i < ITEMS.size(); i++) {
+            System.out.println((i + 1) + "." + ITEMS.get(i).name());
         }
     }
     

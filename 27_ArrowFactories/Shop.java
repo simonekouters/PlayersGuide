@@ -16,11 +16,9 @@ public class Shop {
         greetCustomer();
         String menuChoice = askMenuChoice();
         
-        // If user chooses standard arrow, they are only able to see the standard options and create a standard arrow
         if (menuChoice.equals("standard")) { 
             displayStandardMenu();
             createStandardArrow();
-        // If user chooses standard arrow, they are only able to see the custom options and create a custom arrow
         } else { 
             displayCustomMenu();
             createCustomArrow();
@@ -37,33 +35,27 @@ public class Shop {
     
     
     public String askMenuChoice() {
-        String input = "";
-        
-        // Ask user for input until they choose one of the two options
         do {
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             if (input.toLowerCase().equals("standard") || input.toLowerCase().equals("custom")) {
-                break;
+                return input;
             } else {
                 System.out.println(ANSI.RED + "Please choose 'standard' or 'custom'." + ANSI.RESET); 
             }
         } while (true);
-        
-        return input;
     }
     
     
     public void displayStandardMenu() {
-        System.out.println(ANSI.GREEN + "\nSTANDARD OPTIONS\n---------------------------------------------------------------------------------------");
+        System.out.println(ANSI.GREEN + "\nSTANDARD OPTIONS\n------------------------------------------------------------------------------------------------");
         System.out.println("- The Elite Arrow, made from a steel arrowhead, plastic fletching, and a 95 cm shaft.");
         System.out.println("- The Beginner Arrow, made from a wood arrowhead, goose feathers fletching, and a 75 cm shaft.");
         System.out.println("- The Marksman Arrow, made from a steel arrowhead, goose feathers fletching, and a 65 cm shaft.");
-        System.out.println("---------------------------------------------------------------------------------------\n" + ANSI.RESET);
+        System.out.println("------------------------------------------------------------------------------------------------\n" + ANSI.RESET);
     }
     
     
     public void createStandardArrow() {
-        // Make sure the user input is valid before creating an arrow
         String standardArrowChoice = chooseStandardArrow();
         
         if (standardArrowChoice.equals("elite")) {
@@ -77,19 +69,16 @@ public class Shop {
     
     
     public String chooseStandardArrow() {
-        String input = "";
+        System.out.println(ANSI.CYAN + "Do you want an 'elite', 'beginner' or 'marksman' arrow?" + ANSI.RESET);
         
-        // Ask user for input until they choose one of the two options
         do {
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             if (input.toLowerCase().equals("elite") || input.toLowerCase().equals("beginner") || input.toLowerCase().equals("marksman")) {
-                break;
+                return input;
             } else {
                 System.out.println(ANSI.RED + "Please choose 'elite', 'beginner' or 'marksman'." + ANSI.RESET); 
             }
         } while (true);
-        
-        return input;
     }
     
     
@@ -121,7 +110,6 @@ public class Shop {
         String arrowheadChoice = "";
         boolean valid = false;
         
-        // Ask user for input until they choose one of the three options 
         do {
             try{
                 arrowheadChoice = scanner.nextLine();
@@ -141,7 +129,6 @@ public class Shop {
         String fletchingChoice = "";
         boolean valid = false;
         
-        // Ask user for input until they choose one of the three options 
         do {
             try {
                 fletchingChoice = scanner.nextLine();
@@ -157,23 +144,20 @@ public class Shop {
     
     
     public int chooseLength() {
-        System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
-        int number;
-         
         do {
-            try {
-                number = Integer.parseInt(scanner.nextLine());
+            System.out.println(ANSI.CYAN + "\nWhat length do you want? Please pick a length between 60 and 100 cm." + ANSI.RESET);
+            if (scanner.hasNextInt()) {
+                int number = Integer.parseInt(scanner.nextLine());
                 if (number >= 60 && number <= 100) {
-                    break;
+                    return number;
                 } else {
                     System.out.println(ANSI.RED + "Please choose a valid length." + ANSI.RESET);
                 }
-            } catch (NumberFormatException e) {
+            } else {
+                scanner.nextLine();
                 System.out.println(ANSI.RED + "That is not a number." + ANSI.RESET);
-            }
+            }   
         } while (true);
-        
-        return number;
     }
         
         

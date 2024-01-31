@@ -51,19 +51,16 @@ public class ManticoreHunting {
     
     
     public boolean isDestroyed() {
-        while (true) {
-            if (manticoreHealth <= 0) {
-                System.out.println(ANSI.GREEN + "The Manticore has been destroyed! The city of Consolas has been saved!" + ANSI.RESET);
-                return true;
-            } else if (cityHealth <= 0) {
-                System.out.println(ANSI.RED + "The city of Consolas has been destroyed. You failed to save the city.");
-                return true;
-            } else {
-                return false;
-            }
-        }
+        if (manticoreHealth <= 0) {
+            System.out.println(ANSI.GREEN + "The Manticore has been destroyed! The city of Consolas has been saved!" + ANSI.RESET);
+            return true;
+        } else if (cityHealth <= 0) {
+            System.out.println(ANSI.RED + "The city of Consolas has been destroyed. You failed to save the city.");
+            return true;
+        } 
+        return false;
     }
-    
+  
     
     public int calculateDamage(int round) {
         if (round % 5 == 0 && round % 3 == 0) {
