@@ -1,5 +1,5 @@
 public class SouthCommand implements RobotCommand {
     public void run(Robot robot) {
-        robot.setY(-1);
+        robot.moveY(-1);
     }
 }

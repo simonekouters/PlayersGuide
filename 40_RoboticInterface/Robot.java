@@ -15,7 +15,7 @@ public class Robot implements RobotCommand {
     }
     
     
-    public void setX(int x) {
+    public void moveX(int x) {
         if (!isPowered) {
             return;
         }
@@ -23,7 +23,7 @@ public class Robot implements RobotCommand {
     }
     
     
-    public void setY(int y) {
+    public void moveY(int y) {
         if (!isPowered) {
             return;
         }
