@@ -3,17 +3,15 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Game {
-    private int size;
-    private EntranceRoom entranceRoom;
-    private FountainRoom fountainRoom;
-    private PlayerPosition playerPosition;
-    private Map<Coordinate, Room> grid;
+    private final int size;
+    private final EntranceRoom entranceRoom;
+    private final FountainRoom fountainRoom;
+    private final Map<Coordinate, Room> grid;
     
-    public Game(int size, EntranceRoom entranceRoom, FountainRoom fountainRoom, PlayerPosition playerPosition) {
+    public Game(int size, EntranceRoom entranceRoom, FountainRoom fountainRoom) {
         this.size = size;
         this.entranceRoom = entranceRoom;
         this.fountainRoom = fountainRoom;
-        this.playerPosition = playerPosition;
         this.grid = new HashMap<>();
         
         placeRoomsOnGrid();

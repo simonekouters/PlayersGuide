@@ -1,7 +1,7 @@
 public class EntranceRoom extends Room {
-    private int x;
-    private int y;
-    private String name;
+    private final int x;
+    private final int y;
+    private final String name;
     
     public EntranceRoom(int x, int y, String name) {
         this.x = x;

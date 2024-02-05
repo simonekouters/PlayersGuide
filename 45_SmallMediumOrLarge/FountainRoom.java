@@ -1,7 +1,7 @@
 public class FountainRoom extends Room {
-    private int x;
-    private int y;
-    private String name;
+    private final int x;
+    private final int y;
+    private final String name;
     private boolean fountain;
     
     public FountainRoom(int x, int y, String name) {

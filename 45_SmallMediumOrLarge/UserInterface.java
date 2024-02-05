@@ -61,7 +61,7 @@ public class UserInterface {
         this.entranceRoom = createEntranceRoom(size);
         this.fountainRoom = createFountainRoom(size);
         this.playerPosition = new PlayerPosition(entranceRoom.getX(), entranceRoom.getY());
-        this.game = new Game(size, this.entranceRoom, this.fountainRoom, this.playerPosition); 
+        this.game = new Game(size, this.entranceRoom, this.fountainRoom); 
     }
     
     
