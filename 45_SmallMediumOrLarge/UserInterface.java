@@ -125,19 +125,17 @@ public class UserInterface {
             }
         } while (true);
             
-        if (command.equals("move north")) {
-            moveNorth();
-        } else if (command.equals("move south")) {
-            moveSouth();
-        } else if (command.equals("move east")) {
-            moveEast();
-        } else if (command.equals("move west")) {
-            moveWest();
-        } else if (command.equals("enable fountain")) {
-            if (!playerIsInFountainRoom()) {
-                System.out.println(ANSI.RED + "You can only turn on the fountain when you are in the fountain room." + ANSI.RESET);
-            } else {
-                fountainRoom.enableFountain();
+        switch (command) {
+            case "move north" -> movePlayer("north");
+            case "move south" -> movePlayer("south");
+            case "move east" -> movePlayer("east");
+            case "move west" -> movePlayer("west");
+            case "enable fountain" -> {
+                if (!playerIsInFountainRoom()) {
+                    System.out.println(ANSI.RED + "You can only turn on the fountain when you are in the fountain room." + ANSI.RESET);
+                } else {
+                    fountainRoom.enableFountain();
+                }
             }
         }
     }
@@ -152,42 +150,35 @@ public class UserInterface {
         return this.playerPosition.getX() == this.entranceRoom.getX() && this.playerPosition.getY() == this.entranceRoom.getY();
     }
 
-    private void moveNorth() {
-        if (game.roomExists((playerPosition.getX() - 1), playerPosition.getY())) {
-            playerPosition.setX(playerPosition.getX() - 1);
-        } else {
-             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
-             askCommand();
+    private void movePlayer(String direction) {
+        int x;
+        int y;
+
+        switch (direction) {
+            case "north" -> {
+                x = playerPosition.getX() - 1;
+                y = playerPosition.getY();
+            }
+            case "south" -> {
+                x = playerPosition.getX() + 1;
+                y = playerPosition.getY();
+            }
+            case "east" -> {
+                x = playerPosition.getX();
+                y = playerPosition.getY() + 1;
+            }
+            default -> {
+                x = playerPosition.getX();
+                y = playerPosition.getY() - 1;
+            }
         }
-    }
-    
-    
-    private void moveSouth() {
-        if (game.roomExists((playerPosition.getX() + 1), playerPosition.getY())) {
-            playerPosition.setX(playerPosition.getX() + 1);  
+        
+        if (game.roomExists(x, y)) {
+            playerPosition.setX(x);
+            playerPosition.setY(y);
         } else {
-             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
-             askCommand();
-        }
-    }
-    
-    
-    private void moveEast() {
-        if (game.roomExists((playerPosition.getY() + 1), playerPosition.getY())) {
-            playerPosition.setY(playerPosition.getY() + 1);  
-        } else {
-             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
-             askCommand();
-        }
-    }
-    
-    
-    private void moveWest() {
-        if (game.roomExists((playerPosition.getY() - 1), playerPosition.getY())) {
-            playerPosition.setY(playerPosition.getY() - 1);  
-        } else {
-             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
-             askCommand();
+            System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
+            askCommand();
         }
     }
 }
