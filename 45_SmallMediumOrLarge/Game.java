@@ -35,7 +35,10 @@ public class Game {
         return grid.containsKey(new Coordinate(x, y));
     } 
     
-    public int getSize() {
-        return this.size;
+    public String getRoomType(int x, int y) {
+        if (!roomExists(x, y)) {
+            return "non-existent";
+        }
+        return this.grid.get(new Coordinate(x, y)).getName();
     }
 }
