@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class UserInterface {
-    private Scanner scanner;
+    private final Scanner scanner;
     private Game game;
     private EntranceRoom entranceRoom;
     private FountainRoom fountainRoom;
@@ -19,7 +19,7 @@ public class UserInterface {
         createNewGame(gameSize); 
         
         while (true) {
-            if (playerIsAtEntrance() && fountainRoom.fountainIsOn()) {
+            if (currentRoomType.equals("Entrance") && fountainRoom.fountainIsOn()) {
                 System.out.println(ANSI.CYAN + "The Fountain of Objects has been reactivated, and you have escaped with your life!" + ANSI.RESET);
                 System.out.println(ANSI.MAGENTA + "You win!" + ANSI.RESET);
                 break;
@@ -95,19 +95,21 @@ public class UserInterface {
         
         return new FountainRoom(x, y, "Fountain Room");
     }
-  
+    
+    
+    private String currentRoomType() {
+        return game.getRoomType(playerPosition.getX(), playerPosition.getY());
+    }
+    
     
     private void describeRoom() {
         System.out.println(ANSI.MAGENTA + playerPosition + ANSI.RESET);
         
-        if (playerIsAtEntrance()) {
-            System.out.println(ANSI.YELLOW + "You see light coming from the cavern entrance."+ ANSI.RESET);
+        if (currentRoomType().equals("Entrance")) {
+            System.out.println(entranceRoom.toString());
         }
-        if (playerIsInFountainRoom() && !fountainRoom.fountainIsOn()) {
-            System.out.println(ANSI.BLUE + "You hear water dripping in this room. The Fountain of Objects is here!" + ANSI.RESET);
-        }           
-        if (playerIsInFountainRoom() && fountainRoom.fountainIsOn()) {
-            System.out.println(ANSI.CYAN + "You hear the rushing waters from the Fountain of Objects. It has been reactivated!" + ANSI.RESET);
+        if (currentRoomType().equals("Fountain Room")) {
+            System.out.println(fountainRoom.toString());
         }
     }
     
@@ -140,15 +142,6 @@ public class UserInterface {
         }
     }
     
-    
-    private boolean playerIsInFountainRoom() {
-        return this.playerPosition.getX() == this.fountainRoom.getX() && this.playerPosition.getY() == this.fountainRoom.getY();
-    }
-    
-    
-    private boolean playerIsAtEntrance() {
-        return this.playerPosition.getX() == this.entranceRoom.getX() && this.playerPosition.getY() == this.entranceRoom.getY();
-    }
 
     private void movePlayer(String direction) {
         int x;
