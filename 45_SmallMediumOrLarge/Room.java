@@ -1,10 +1,7 @@
 public class Room {
-    private int x;
-    private int y;
-    private String name;
-
-    public Room() {
-    }
+    private final int x;
+    private final int y;
+    private final String name;
 
     public Room(int x, int y, String name) {
         this.x = x;
@@ -18,5 +15,9 @@ public class Room {
     
     public int getY() {
         return this.y;
+    }
+    
+    public String getName() {
+        return this.name;
     }
 }
