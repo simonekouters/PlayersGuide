@@ -164,20 +164,11 @@ public class UserInterface {
         int yMovement = 0;
 
         switch (direction) {
-            case "north" -> {
-                xMovement = -1;
-            }
-            case "south" -> {
-                xMovement = 1;
-            }
-            case "east" -> {
-                yMovement = 1;
-            }
-            default -> {
-                yMovement = -1;
-            }
+            case "north" -> xMovement = -1;
+            case "south" -> xMovement = 1;
+            case "east" -> yMovement = 1;
+            default -> yMovement = -1;
         }
-
 
     if (game.roomExists((playerPosition.getX() + xMovement), (playerPosition.getY()) + yMovement)) { // klopt niet? south bij 0,0 kan niet 
             playerPosition.move(xMovement, yMovement);
