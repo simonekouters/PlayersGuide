@@ -170,7 +170,7 @@ public class UserInterface {
             default -> yMovement = -1;
         }
 
-    if (game.roomExists((playerPosition.getX() + xMovement), (playerPosition.getY()) + yMovement)) { // klopt niet? south bij 0,0 kan niet 
+    if (game.roomExists((playerPosition.getX() + xMovement), (playerPosition.getY()) + yMovement)) { 
             playerPosition.move(xMovement, yMovement);
         } else {
             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
