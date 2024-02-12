@@ -1,8 +1,8 @@
 public class FountainRoom extends Room {
     private static boolean fountain = false;
     
-    public FountainRoom(int x, int y, String name) {
-        super(x, y, name);
+    public FountainRoom() {
+        super("Fountain Room");
     }
 
     public static void enableFountain() {

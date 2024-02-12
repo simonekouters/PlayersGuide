@@ -1,6 +1,6 @@
 public class Maelstrom extends Room {
-    public Maelstrom(int x, int y, String name) {
-        super (x, y, name);
+    public Maelstrom() {
+        super("Maelstrom");
     }
 
     

@@ -1,6 +1,6 @@
 public class Amarok extends Room {
-    public Amarok(int x, int y, String name) {
-        super (x, y, name);
+    public Amarok() {
+        super("Amarok");
     }
 
     

@@ -1,4 +1,5 @@
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -71,6 +72,7 @@ public class UserInterface {
         this.playerPosition = this.game.getPlayer();
     }
 
+
     private void executeEncounters() {
         if (getCurrentRoomType().equals("Maelstrom")) {
             game.maelstromEncounter();
@@ -82,24 +84,30 @@ public class UserInterface {
         return game.getRoomType(playerPosition.getX(), playerPosition.getY());
     }
     
-    private List<String> getSurroundingRooms(int directions) {
-        String room1 = game.getRoomType(playerPosition.getX() + 1, playerPosition.getY());
-        String room2 = game.getRoomType(playerPosition.getX() - 1, playerPosition.getY());
-        String room3 = game.getRoomType(playerPosition.getX(), playerPosition.getY() + 1);
-        String room4 = game.getRoomType(playerPosition.getX(), playerPosition.getY() - 1);
-        String room5 = game.getRoomType(playerPosition.getX() + 1, playerPosition.getY() + 1);
-        String room6 = game.getRoomType(playerPosition.getX() - 1, playerPosition.getY() -1);
-        String room7 = game.getRoomType(playerPosition.getX() - 1, playerPosition.getY() +1);
-        String room8 = game.getRoomType(playerPosition.getX() + 1, playerPosition.getY() - 1);
-
-        List<String> rooms = directions == 4 ? List.of(room1, room2, room3, room4) : List.of(room1,
-                room2, room3, room4, room5, room6, room7, room8);
-
-        return rooms.stream()
-        .filter(room -> room != null)
-        .distinct()
-        .collect(Collectors.toList());
+    
+    private Set<String> getSurroundingRooms(int directions) {
+        Set<String> directRooms = new HashSet<>(); 
+        Set<String> allSurroundingRooms = new HashSet<>();
+        
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (x == 0 && y == 0) { 
+                continue;
+                }
+                int newX = playerPosition.getX() + x;
+                int newY = playerPosition.getY() + y;
+                if (game.roomExists(newX, newY)) {
+                    if (x == 0 || y == 0) {
+                        directRooms.add(game.getRoomType(newX, newY));
+                        allSurroundingRooms.add(game.getRoomType(newX, newY));
+                    }
+                    allSurroundingRooms.add(game.getRoomType(newX, newY));
+                }
+            }
+        }
+        return directions == 4 ? directRooms : allSurroundingRooms;
     }
+
 
     private void describeRoom() {
         System.out.println(ANSI.MAGENTA + playerPosition + ANSI.RESET);
@@ -120,6 +128,7 @@ public class UserInterface {
             System.out.println(Amarok.getDescription());
         }
     }
+    
     
     private void askCommand() {
         System.out.println("What do you want to do? " + ANSI.GREEN);
@@ -151,31 +160,27 @@ public class UserInterface {
 
 
     private void movePlayer(String direction) {
-        int x;
-        int y;
+        int xMovement = 0;
+        int yMovement = 0;
 
         switch (direction) {
             case "north" -> {
-                x = playerPosition.getX() - 1;
-                y = playerPosition.getY();
+                xMovement = -1;
             }
             case "south" -> {
-                x = playerPosition.getX() + 1;
-                y = playerPosition.getY();
+                xMovement = 1;
             }
             case "east" -> {
-                x = playerPosition.getX();
-                y = playerPosition.getY() + 1;
+                yMovement = 1;
             }
             default -> {
-                x = playerPosition.getX();
-                y = playerPosition.getY() - 1;
+                yMovement = -1;
             }
         }
 
-        if (game.roomExists(x, y)) {
-            playerPosition.setX(x);
-            playerPosition.setY(y);
+
+    if (game.roomExists((playerPosition.getX() + xMovement), (playerPosition.getY()) + yMovement)) { // klopt niet? south bij 0,0 kan niet 
+            playerPosition.move(xMovement, yMovement);
         } else {
             System.out.println(ANSI.RED + "You can't go any farther in this direction, please turn around." + ANSI.RESET);
             askCommand();

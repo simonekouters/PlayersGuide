@@ -23,9 +23,9 @@ public class Game {
         int amountOfMaelstroms = size == 8 ? 2 : 1;
         int amountOfAmaroks = size / 2 - 1; 
         
-        createObstacles(amountOfPits, "Pit");
-        createObstacles(amountOfMaelstroms, "Maelstrom");
-        createObstacles(amountOfAmaroks, "Amarok");
+        createObstacles(amountOfPits, new Pit());
+        createObstacles(amountOfMaelstroms, new Maelstrom());
+        createObstacles(amountOfAmaroks, new Amarok());
         createEmptyRooms();
     }
     
@@ -38,7 +38,7 @@ public class Game {
             y = rand.nextInt(size - 1);
             // to make sure the entrance is at the edge of the grid 
             if (x == 0 || y == 0) { 
-                grid.put(new Coordinate(x, y), new EntranceRoom(x, y, "Entrance"));
+                grid.put(new Coordinate(x, y), new EntranceRoom());
                 player = new PlayerPosition(x, y);
                 break;
             }
@@ -54,24 +54,17 @@ public class Game {
         
         int x = rand.nextInt(max - min + 1) + min; 
         int y = rand.nextInt(max - min + 1) + min; 
-        grid.put(new Coordinate(x, y), new FountainRoom(x, y, "Fountain Room"));
+        grid.put(new Coordinate(x, y), new FountainRoom());
     }
     
     
-    private void createObstacles(int amount, String name) {
+    private void createObstacles(int amount, Room roomType) {
         for (int i = 0; i < amount; i++) {
             do {
                 int x = rand.nextInt(size - 1);
                 int y = rand.nextInt(size - 1);
                 if (!grid.containsKey(new Coordinate(x, y))) {
-                    if (name.equals("Pit")) {
-                         grid.put(new Coordinate(x, y), new Pit(x, y, name));
-                    } else if (name.equals("Maelstrom")) {
-                         grid.put(new Coordinate(x, y), new Maelstrom(x, y, name));
-                    } else {
-                         grid.put(new Coordinate(x, y), new Amarok(x, y, name));
-                    }
-                    grid.put(new Coordinate(x, y), new Room(x, y, name));
+                    grid.put(new Coordinate(x, y), roomType);
                     break; 
                 }
             } while (true);
@@ -83,7 +76,7 @@ public class Game {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 if (!roomExists(x, y)) {
-                    grid.put(new Coordinate(x, y), new Room(x, y, "Empty Room"));
+                    grid.put(new Coordinate(x, y), new EmptyRoom());
                 } 
             }
         }   
@@ -96,32 +89,33 @@ public class Game {
 
 
     public void maelstromEncounter() {
-        Room maelstrom = grid.get(new Coordinate(player.getX(), player.getY()));
+        int currentX = player.getX();
+        int currentY = player.getY();
         
-        if (roomExists(player.getX() - 1, player.getY() + 2)) {
-            player.move(-1, 2);
+        if (roomExists(player.getX() + 1, player.getY() + 2)) {
+            player.move(1, 2);
             System.out.println(ANSI.RED + "You have encountered a Maelstrom, you got swept to another room." + ANSI.RESET);
         } else {
             System.out.println(ANSI.GREEN + "You have encountered a Maelstrom, but you got lucky and weren't affected." + ANSI.RESET);
-        } 
+        }
 
-        if (roomExists(maelstrom.getX() + 1, maelstrom.getY() -2)) {
-            maelstrom.move(1, -2);
+
+        if (roomExists(currentX + 1 , currentY - 2) && getRoomType(currentX + 1, currentY - 2).equals("Empty Room")) {
+            grid.put(new Coordinate(currentX + 1, currentY - 2), new Maelstrom());
+            grid.put(new Coordinate(currentX, currentY), new EmptyRoom());
         } else {
-            moveMaelstromToEmptyRoom(maelstrom);
+            moveMaelstromToEmptyRoom(currentX, currentY);
         }
     }
 
 
-    private void moveMaelstromToEmptyRoom(Room maelstrom) {
+    private void moveMaelstromToEmptyRoom(int currentX, int currentY) {
         do {
             int x = rand.nextInt(size - 1);
             int y = rand.nextInt(size - 1);
-            if (getRoomType(x, y).equals("Empty")) {
-                int currentX = maelstrom.getX();
-                int currentY = maelstrom.getY();
-                grid.put(new Coordinate(currentX, currentY), new Room(currentX, currentY, "Empty Room"));
-                grid.put(new Coordinate(x, y), new Room(x, y, "Maelstrom"));
+            if (getRoomType(x, y).equals("Empty Room")) {
+                grid.put(new Coordinate(x, y), new Maelstrom());
+                grid.put(new Coordinate(currentX, currentY), new EmptyRoom());
                 return;
             }
         } while (true);
