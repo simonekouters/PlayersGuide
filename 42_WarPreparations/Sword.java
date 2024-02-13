@@ -10,8 +10,9 @@ public record Sword(Material material, Gemstone gemstone, int length, int crossg
     
     @Override
     public String toString() {
+    StringBuilder bldr = new StringBuilder();
         if (this.gemstone.equals(Gemstone.NONE)) {
-            bldr.append("plain");
+            bldr.append("plain ");
             bldr.append(material.name().toLowerCase());
             bldr.append(" sword of ");
             bldr.append(length);
