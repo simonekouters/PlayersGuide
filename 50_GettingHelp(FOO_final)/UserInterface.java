@@ -42,14 +42,12 @@ public class UserInterface {
                 }
                 if (dead) {
                     System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
-                    System.out.println(ANSI.QUESTION + "Try again? (yes/no)" + ANSI.RESET);
-                    String playAgain = scanner.nextLine();
-                    if (playAgain.equals("yes")) {
+                    if (askYesOrNo("Try again? (yes/no) ").equals("yes")) {
                         dead = false;
                         player.reset();
                     } else {
                         break;
-                    }
+                    }   
                 }
                 System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
                 describeRoom();
@@ -57,9 +55,7 @@ public class UserInterface {
                 executeEncounters();
             }
             System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
-            System.out.print(ANSI.QUESTION + "Play a new game? (yes/no) " + ANSI.RESET);
-            String playNewGame = scanner.nextLine();
-            if (playNewGame.equals("yes")) {
+            if (askYesOrNo("Play a new game? (yes/no) ").equals("yes")) {
                 FountainRoom.disableFountain();
                 System.out.println();
                 start();
@@ -71,19 +67,29 @@ public class UserInterface {
     }
     
     
-    private String askGameSize() {
-        String choice;
-        
+    private String askYesOrNo(String text) {
+        System.out.print(ANSI.QUESTION + text + ANSI.RESET);
+        do {
+            String choice = scanner.nextLine().toLowerCase();
+            if (choice.equals("yes") || choice.equals("no")) {
+                return choice;
+            } else {
+                System.out.print(ANSI.WARNING + "Please enter 'yes' or 'no'. " + ANSI.RESET);
+            }
+        } while (true);
+    }
+    
+    
+    private String askGameSize() {        
         System.out.print(ANSI.QUESTION + "Do you want to play a small, medium or large game? " + ANSI.RESET);
         do {
-            choice = scanner.nextLine().toLowerCase();
+            String choice = scanner.nextLine().toLowerCase();
             if (choice.equals("small") || choice.equals("medium") || choice.equals("large")) {
-                break;
+                return choice;
             } else {
                 System.out.print(ANSI.WARNING + "Please enter 'small', 'medium', or 'large'. " + ANSI.RESET);
             }
         } while (true);
-       return choice;
     }
     
     
