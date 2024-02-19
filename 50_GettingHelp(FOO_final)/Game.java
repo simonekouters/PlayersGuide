@@ -8,6 +8,7 @@ public class Game {
     private Map<Coordinate, Room> grid;
     private final Random rand;
     private final Player player;
+    private static final String EMPTY_ROOM = "Empty Room";
     
     public Game(int size, Player player) {
         this.size = size;
@@ -95,7 +96,7 @@ public class Game {
             System.out.println(ANSI.WARNING + "You have encountered a Maelstrom, but you got lucky and weren't affected." + ANSI.RESET);
         }
 
-        if (roomExists(currentX + 1 , currentY - 2) && getRoomType(currentX + 1, currentY - 2).equals("Empty Room")) {
+        if (roomExists(currentX + 1 , currentY - 2) && getRoomType(currentX + 1, currentY - 2).equals(EMPTY_ROOM)) {
             grid.put(new Coordinate(currentX + 1, currentY - 2), new Maelstrom());
             grid.put(new Coordinate(currentX, currentY), new EmptyRoom());
         } else {
@@ -108,7 +109,7 @@ public class Game {
         do {
             int x = rand.nextInt(size - 1);
             int y = rand.nextInt(size - 1);
-            if (getRoomType(x, y).equals("Empty Room")) {
+            if (getRoomType(x, y).equals(EMPTY_ROOM)) {
                 grid.put(new Coordinate(x, y), new Maelstrom());
                 grid.put(new Coordinate(currentX, currentY), new EmptyRoom());
                 return;
@@ -129,7 +130,7 @@ public class Game {
     
     public String getRoomType(int x, int y) {
         if (!roomExists(x, y)) {
-            return "non-existent";
+            return null;
         }
         return grid.get(new Coordinate(x, y)).getName();
     }

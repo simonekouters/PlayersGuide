@@ -9,6 +9,16 @@ public class UserInterface {
     private Game game;
     private Player player;
     
+    private static final String AMAROK = "Amarok";
+    private static final String PIT = "Pit";
+    private static final String MAELSTROM = "Maelstrom";
+    private static final String ENTRANCE = "Entrance";
+    private static final String FOUNTAIN_ROOM = "Fountain Room";
+    private static final String SMALL = "small";
+    private static final String MEDIUM = "medium";
+    private static final String LARGE = "large";
+    
+    
     public UserInterface() {
         this.scanner = new Scanner(System.in);
         this.descriptions = new GameDescriptions();
@@ -24,19 +34,19 @@ public class UserInterface {
             boolean dead = false;
             
             while (true) {
-                if (getCurrentRoomType().equals("Entrance") && FountainRoom.fountainIsOn()) {
+                if (getCurrentRoomType().equals(ENTRANCE) && FountainRoom.fountainIsOn()) {
                     System.out.println(ANSI.WON + "The Fountain of Objects has been reactivated, and you have escaped with your life! You win!" + ANSI.RESET);
                     break;
                 }
-                if (getCurrentRoomType().equals("Pit")) {
+                if (getCurrentRoomType().equals(PIT)) {
                     System.out.println(ANSI.LOST + "You fell into a pit. You lose!" + ANSI.RESET);
                     dead = true;
                 }
-                if (getCurrentRoomType().equals("Amarok")) {
+                if (getCurrentRoomType().equals(AMAROK)) {
                     System.out.println(ANSI.LOST + "You got killed by an Amarok!" + ANSI.RESET);
                     dead = true;
                 }
-                if (getCurrentRoomType().equals("Maelstrom")) {
+                if (getCurrentRoomType().equals(MAELSTROM)) {
                     game.maelstromEncounter();
                 }
                 if (dead) {
@@ -52,7 +62,7 @@ public class UserInterface {
                 describeRoom();
                 askCommand();
             }
-            break;
+            break;            
         }
     }
     
@@ -74,7 +84,7 @@ public class UserInterface {
         System.out.print(ANSI.QUESTION + "Do you want to play a small, medium or large game? " + ANSI.RESET);
         do {
             String choice = scanner.nextLine().toLowerCase();
-            if (choice.equals("small") || choice.equals("medium") || choice.equals("large")) {
+            if (choice.equals(SMALL) || choice.equals(MEDIUM) || choice.equals(LARGE)) {
                 return choice;
             } else {
                 System.out.print(ANSI.WARNING + "Please enter 'small', 'medium', or 'large'. " + ANSI.RESET);
@@ -86,9 +96,9 @@ public class UserInterface {
     private void createNewGame(String gameSize) {
         int size;
         
-        if (gameSize.equals("small")) {
+        if (gameSize.equals(SMALL)) {
             size = 4;
-        } else if (gameSize.equals("medium")) {
+        } else if (gameSize.equals(MEDIUM)) {
             size = 6;
         } else {
             size = 8;
@@ -132,19 +142,19 @@ public class UserInterface {
     private void describeRoom() {
         System.out.println(player);
 
-        if (getCurrentRoomType().equals("Entrance")) {
+        if (getCurrentRoomType().equals(ENTRANCE)) {
             System.out.println(EntranceRoom.getDescription());
-        } else if (getCurrentRoomType().equals("Fountain Room")) {
+        } else if (getCurrentRoomType().equals(FOUNTAIN_ROOM)) {
             System.out.println(FountainRoom.getDescription());
         }
 
-        if (getSurroundingRooms(4).contains("Pit")) {
+        if (getSurroundingRooms(4).contains(PIT)) {
             System.out.println(Pit.getDescription());
         }
-        if (getSurroundingRooms(8).contains("Maelstrom")) {
+        if (getSurroundingRooms(8).contains(MAELSTROM)) {
             System.out.println(Maelstrom.getDescription());
         }
-        if (getSurroundingRooms(8).contains("Amarok")) {
+        if (getSurroundingRooms(8).contains(AMAROK)) {
             System.out.println(Amarok.getDescription());
         }
     }
@@ -226,8 +236,8 @@ public class UserInterface {
             default -> y--;
         }
         
-        if (game.getRoomType(x, y).equals("Amarok") || game.getRoomType(x, y).equals("Maelstrom")) {
-            System.out.print(game.getRoomType(x, y).equals("Amarok") ? ANSI.KILLED + "You killed an " : ANSI.KILLED + "You killed a "); 
+        if (game.getRoomType(x, y).equals(AMAROK) || game.getRoomType(x, y).equals(AMAROK)) {
+            System.out.print(game.getRoomType(x, y).equals(AMAROK) ? ANSI.KILLED + "You killed an " : ANSI.KILLED + "You killed a "); 
             System.out.println(game.getRoomType(x, y).toLowerCase() + "!" + ANSI.RESET);   
             game.removeMonster(x, y);            
         }
