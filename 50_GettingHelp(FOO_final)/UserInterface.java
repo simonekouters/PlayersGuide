@@ -36,6 +36,9 @@ public class UserInterface {
                     System.out.println(ANSI.LOST + "You got killed by an Amarok!" + ANSI.RESET);
                     dead = true;
                 }
+                if (getCurrentRoomType().equals("Maelstrom")) {
+                    game.maelstromEncounter();
+                }
                 if (dead) {
                     System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
                     if (askYesOrNo("Try again? (yes/no) ").equals("yes")) {
@@ -48,15 +51,6 @@ public class UserInterface {
                 System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
                 describeRoom();
                 askCommand();
-                executeEncounters();
-            }
-            System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
-            if (askYesOrNo("Play a new game? (yes/no) ").equals("yes")) {
-                FountainRoom.disableFountain();
-                System.out.println();
-                start();
-            } else {
-                break;
             }
             break;
         }
@@ -103,13 +97,6 @@ public class UserInterface {
         player = new Player();
         game = new Game(size, player);
         game.fillGrid();
-    }
-
-
-    private void executeEncounters() {
-        if (getCurrentRoomType().equals("Maelstrom")) {
-            game.maelstromEncounter();
-        }
     }
     
 
