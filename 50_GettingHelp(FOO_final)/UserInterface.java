@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner scanner;
+    private GameDescriptions descriptions;
     private Game game;
     private Player player;
-    private GameDescriptions descriptions;
     
     public UserInterface() {
         this.scanner = new Scanner(System.in);
@@ -190,7 +190,9 @@ public class UserInterface {
             case "shoot west" -> shoot("west");
             case "help" -> System.out.println(descriptions.getCommandDescriptions());
             case "enable fountain" -> {
-                if (!getCurrentRoomType().equals("Fountain Room")) {
+                if (FountainRoom.fountainIsOn()) {
+                    System.out.println(ANSI.FOUNTAIN_ON + "The fountain is already on!" + ANSI.RESET);
+                } else if (!getCurrentRoomType().equals("Fountain Room")) {
                     System.out.println(ANSI.WARNING + "You can only turn on the fountain when you are in the fountain room." + ANSI.RESET);
                 } else {
                     FountainRoom.enableFountain();
