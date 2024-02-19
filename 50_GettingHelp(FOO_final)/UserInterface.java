@@ -9,10 +9,6 @@ public class UserInterface {
     private Player player;
     private GameDescriptions descriptions;
     
-    private final List<String> commands = List.of("move north", "move south", "move east", "move west", "shoot north", 
-        "shoot south", "shoot east", "shoot west", "enable fountain", "help");
-    
-    
     public UserInterface() {
         this.scanner = new Scanner(System.in);
         this.descriptions = new GameDescriptions();
@@ -168,6 +164,9 @@ public class UserInterface {
     
     
     private void askCommand() {
+        final List<String> commands = List.of("move north", "move south", "move east", "move west", "shoot north", 
+        "shoot south", "shoot east", "shoot west", "enable fountain", "help");
+        
         System.out.print(ANSI.QUESTION + "What do you want to do? " + ANSI.RESET);
         String command;
         
