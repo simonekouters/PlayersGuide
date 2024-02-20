@@ -10,14 +10,13 @@ public class UserInterface {
     private Player player;
     
     private static final String AMAROK = "Amarok";
-    private static final String PIT = "Pit";
-    private static final String MAELSTROM = "Maelstrom";
     private static final String ENTRANCE = "Entrance";
     private static final String FOUNTAIN_ROOM = "Fountain Room";
-    private static final String SMALL = "small";
-    private static final String MEDIUM = "medium";
     private static final String LARGE = "large";
-    
+    private static final String MAELSTROM = "Maelstrom";
+    private static final String MEDIUM = "medium";
+    private static final String PIT = "Pit";
+    private static final String SMALL = "small";
     
     public UserInterface() {
         this.scanner = new Scanner(System.in);
@@ -236,7 +235,7 @@ public class UserInterface {
             default -> y--;
         }
         
-        if (game.getRoomType(x, y).equals(AMAROK) || game.getRoomType(x, y).equals(AMAROK)) {
+        if (game.getRoomType(x, y).equals(AMAROK) || game.getRoomType(x, y).equals(MAELSTROM)) {
             System.out.print(game.getRoomType(x, y).equals(AMAROK) ? ANSI.KILLED + "You killed an " : ANSI.KILLED + "You killed a "); 
             System.out.println(game.getRoomType(x, y).toLowerCase() + "!" + ANSI.RESET);   
             game.removeMonster(x, y);            
