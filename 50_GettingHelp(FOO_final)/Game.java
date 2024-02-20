@@ -5,15 +5,13 @@ import java.util.Random;
 
 public class Game {
     private final int size;
-    private Map<Coordinate, Room> grid;
-    private final Random rand;
+    private Map<Coordinate, Room> grid = new HashMap<>();
+    private final Random rand = new Random();
     private final Player player;
     private static final String EMPTY_ROOM = "Empty Room";
     
     public Game(int size, Player player) {
         this.size = size;
-        this.grid = new HashMap<>(); 
-        this.rand = new Random();
         this.player = player;
     }
     

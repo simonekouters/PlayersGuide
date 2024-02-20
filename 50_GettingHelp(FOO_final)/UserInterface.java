@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-    private final Scanner scanner;
-    private GameDescriptions descriptions;
+    private final Scanner scanner = new Scanner(System.in);
+    private GameDescriptions descriptions = new GameDescriptions();
     private Game game;
     private Player player;
     
@@ -17,12 +17,6 @@ public class UserInterface {
     private static final String MEDIUM = "medium";
     private static final String PIT = "Pit";
     private static final String SMALL = "small";
-    
-    public UserInterface() {
-        this.scanner = new Scanner(System.in);
-        this.descriptions = new GameDescriptions();
-    } 
-    
     
     public void start() {
         System.out.println(descriptions.getGameDescription());
