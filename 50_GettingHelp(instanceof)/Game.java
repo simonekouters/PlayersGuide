@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Game {
     private final int size;
-    private Map<Coordinate, Room> grid = new HashMap<>();
+    private final Map<Coordinate, Room> grid = new HashMap<>();
     private final Random rand = new Random();
     private final Player player;
     
@@ -86,7 +86,7 @@ public class Game {
         int currentX = player.getX();
         int currentY = player.getY();
         
-        if (roomExists(player.getX() + 1, player.getY() + 2)) {
+        if (roomExists(currentX + 1, currentY + 2)) {
             player.move(1, 2);
             System.out.println(ANSI.WARNING + "You have encountered a Maelstrom, you got swept to another room." + ANSI.RESET);
         } else {

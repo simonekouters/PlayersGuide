@@ -12,11 +12,13 @@ public class FountainRoom extends Room {
     public static boolean fountainIsOn() {
         return fountain;
     }
-    
-    public static String getDescription() {
+
+    @Override
+    public void enterRoom(Player player) {
         if (!fountainIsOn()) {
-            return ANSI.FOUNTAIN_OFF + "You hear water dripping in this room. The Fountain of Objects is here!" + ANSI.RESET;
+            System.out.println(ANSI.FOUNTAIN_OFF + "You hear water dripping in this room. The Fountain of Objects is here!" + ANSI.RESET);
+        } else {
+            System.out.println(ANSI.FOUNTAIN_ON + "You hear the rushing waters from the Fountain of Objects. It has been reactivated!" + ANSI.RESET);
         }
-        return ANSI.FOUNTAIN_ON + "You hear the rushing waters from the Fountain of Objects. It has been reactivated!" + ANSI.RESET;
     }
 }

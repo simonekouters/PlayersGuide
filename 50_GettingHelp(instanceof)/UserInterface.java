@@ -5,14 +5,15 @@ import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner scanner = new Scanner(System.in);
-    private GameDescriptions descriptions = new GameDescriptions();
+    private final GameDescriptions descriptions = new GameDescriptions();
     private Game game;
     private Player player;
     
     private static final String LARGE = "large";
     private static final String MEDIUM = "medium";
     private static final String SMALL = "small";
-    
+
+    public static GameState gameState = GameState.PLAYING;
     
     public void start() {
         System.out.println(descriptions.getGameDescription());
@@ -20,44 +21,36 @@ public class UserInterface {
         createNewGame(gameSize); 
         
         while (true) {
-            boolean dead = false;
-            
             while (true) {
-                if (getCurrentRoomType() instanceof EntranceRoom && FountainRoom.fountainIsOn()) {
-                    System.out.println(ANSI.WON + "The Fountain of Objects has been reactivated, and you have escaped with your life! You win!" + ANSI.RESET);
-                    break;
-                }
-                if (getCurrentRoomType() instanceof Pit) {
-                    System.out.println(ANSI.LOST + "You fell into a pit. You lose!" + ANSI.RESET);
-                    dead = true;
-                }
-                if (getCurrentRoomType() instanceof Amarok) {
-                    System.out.println(ANSI.LOST + "You got killed by an Amarok!" + ANSI.RESET);
-                    dead = true;
-                }
                 if (getCurrentRoomType() instanceof Maelstrom) {
                     game.maelstromEncounter();
                 }
-                if (dead) {
+                System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
+                System.out.println(player);
+                getCurrentRoomType().enterRoom(player);
+                if (gameState == GameState.WON) {
+                    break;
+                }
+                if (gameState == GameState.DEAD) {
                     System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
-                    if (askYesOrNo("Try again? (yes/no) ").equals("yes")) {
-                        dead = false;
+                    if (askYesOrNo().equals("yes")) {
+                        gameState = GameState.PLAYING;
                         player.reset();
+                        System.out.println(player);
                     } else {
                         break;
-                    }   
+                    }
                 }
-                System.out.println(ANSI.RESET + "-----------------------------------------------------------------------------------------------------");
-                describeRoom();
+                describeSurroundings();
                 askCommand();
             }
-            break;            
+            break;
         }
     }
     
     
-    private String askYesOrNo(String text) {
-        System.out.print(ANSI.QUESTION + text + ANSI.RESET);
+    private String askYesOrNo() {
+        System.out.print(ANSI.QUESTION + "Try again? (yes/no) " + ANSI.RESET);
         do {
             String choice = scanner.nextLine().toLowerCase();
             if (choice.equals("yes") || choice.equals("no")) {
@@ -102,12 +95,16 @@ public class UserInterface {
     private Room getCurrentRoomType() {
         return game.getRoomType(player.getX(), player.getY());
     }
-    
-    
-    private Set<Room> getSurroundingRooms(int directions) {
-        Set<Room> directRooms = new HashSet<>(); 
-        Set<Room> allSurroundingRooms = new HashSet<>();
-        
+
+    private void describeSurroundings() {
+        for (Room room : getSurroundingRooms()) {
+            room.getDescription();
+        }
+    }
+
+
+    private Set<Room> getSurroundingRooms() {
+        Set<Room> surroundingRooms = new HashSet<>();
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (x == 0 && y == 0) { 
@@ -116,38 +113,12 @@ public class UserInterface {
                 int xDirection = player.getX() + x;
                 int yDirection = player.getY() + y;
                 if (game.roomExists(xDirection, yDirection)) {
-                    if (x == 0 || y == 0) {
-                        directRooms.add(game.getRoomType(xDirection, yDirection));
-                        allSurroundingRooms.add(game.getRoomType(xDirection, yDirection));
-                    }
-                    allSurroundingRooms.add(game.getRoomType(xDirection, yDirection));
+                    surroundingRooms.add(game.getRoomType(xDirection, yDirection));
                 }
             }
         }
-        return directions == 4 ? directRooms : allSurroundingRooms;
+        return surroundingRooms;
     }
-
-
-    private void describeRoom() {
-        System.out.println(player);
-
-        if (getCurrentRoomType() instanceof EntranceRoom) {
-            System.out.println(EntranceRoom.getDescription());
-        } else if (getCurrentRoomType() instanceof FountainRoom) {
-            System.out.println(FountainRoom.getDescription());
-        }
-        
-        if (getSurroundingRooms(4).stream().anyMatch(c -> c instanceof Pit)) {
-            System.out.println(Pit.getDescription());
-        }
-        if (getSurroundingRooms(8).stream().anyMatch(c -> c instanceof Maelstrom)) {
-            System.out.println(Maelstrom.getDescription());
-        }
-        if (getSurroundingRooms(8).stream().anyMatch(c -> c instanceof Amarok)) {
-            System.out.println(Amarok.getDescription());
-        }
-    }
-    
     
     private void askCommand() {
         final List<String> commands = List.of("move north", "move south", "move east", "move west", "shoot north", 
