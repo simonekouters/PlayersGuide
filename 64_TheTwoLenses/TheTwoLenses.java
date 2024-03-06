@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class Main {
+public class TheTwoLenses {
     public static void main(String[] args) {
         int[] array = new int[] {1, 9, 2, 8, 3, 7, 4, 6, 5};
         
