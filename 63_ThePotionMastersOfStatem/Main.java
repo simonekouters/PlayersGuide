@@ -73,6 +73,9 @@ public class Main {
     }
 
     private static void printCreatedPotions(ArrayList<Potion> createdPotions) {
+        if (createdPotions.isEmpty()) {
+            return;
+        }
         System.out.println("\nYour potions:");
         for (Potion potion : createdPotions) {
             System.out.println("- " + potion.name);

@@ -7,7 +7,7 @@ public class StateMachine {
 
     public void addIngredient(Ingredient ingredient) {
         currentPotion = switch (currentPotion) {
-            case WATER -> (ingredient == Ingredient.STARDUST ? Potion.ELIXIR : Potion.RUINED_POTION);
+            case WATER -> (ingredient == Ingredient.STARDUST) ? Potion.ELIXIR : Potion.RUINED_POTION;
             case ELIXIR -> {
                 Potion result;
                 if (ingredient == Ingredient.SNAKE_VENOM) {
@@ -23,10 +23,10 @@ public class StateMachine {
                 }
                 yield result;
             }
-            case NIGHT_SIGHT_POTION -> (ingredient == Ingredient.SHADOW_GLASS ? Potion.CLOUDY_BREW : Potion.RUINED_POTION);
+            case NIGHT_SIGHT_POTION -> (ingredient == Ingredient.SHADOW_GLASS) ? Potion.CLOUDY_BREW : Potion.RUINED_POTION;
             case POISON_POTION, FLYING_POTION -> Potion.RUINED_POTION;
-            case INVISIBILITY_POTION -> (ingredient == Ingredient.EYESHINE_GEM ? Potion.CLOUDY_BREW : Potion.RUINED_POTION);
-            case CLOUDY_BREW -> (ingredient == Ingredient.STARDUST ? Potion.WRAITH_POTION: Potion.RUINED_POTION);
+            case INVISIBILITY_POTION -> (ingredient == Ingredient.EYESHINE_GEM) ? Potion.CLOUDY_BREW : Potion.RUINED_POTION;
+            case CLOUDY_BREW -> (ingredient == Ingredient.STARDUST) ? Potion.WRAITH_POTION: Potion.RUINED_POTION;
             case WRAITH_POTION, RUINED_POTION -> currentPotion;
         };
     }
